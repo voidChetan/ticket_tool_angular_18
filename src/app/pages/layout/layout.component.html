@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="dashboard">Ticket_</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" >
+            <a class="nav-link active" routerLink="dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="department">Department</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="parent-category">Parent Category</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="child-category">Child Category</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="employee">Employee</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="new-ticket">New Ticket</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="ticket-list">Tickets</a>
+          </li>
+        </ul>
+        <form class="d-flex"> 
+          <button class="btn btn-primary" type="button" (click)="onLogOff()">LogOff</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
