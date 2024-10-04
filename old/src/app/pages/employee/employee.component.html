@@ -1,0 +1,132 @@
+<div class="row">
+    @if (!isNewView) {
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success">
+                    <div class="row">
+                        <div class="col-6">
+                            Employee List
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-warning" (click)="isNewView = !isNewView">Add New</button>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No</th>
+                                        <th>Name </th>
+                                        <th>Department Name</th>
+                                        <th>Contact No</th>
+                                        <th>Email Id</th>
+                                        <th>Role</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (item of gridList; track $index) {
+                                        <tr>
+                                            <td>{{$index+1}}</td>
+                                            <td>{{item.employeeName}}</td>
+                                            <td>{{item.deptName}}</td>
+                                            <td>{{item.contactNo}}</td>
+                                            <td>{{item.emailId}}</td>
+                                            <td>{{item.role}}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                                                <button class="btn btn-danger mx-2" (click)="onDelete(item.childCategoryId)">Delete</button>
+                                            </td>
+                                        </tr>
+                                    } 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    } @else { 
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success">
+                    <div class="row">
+                        <div class="col-6">
+                           New Employee 
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-warning" (click)="isNewView = !isNewView">Go To List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <label for="">Employee Name</label>
+                            <input [(ngModel)]="newObj.employeeName" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Contact No</label>
+                            <input [(ngModel)]="newObj.contactNo" type="text" class="form-control" />
+                        </div>
+                        <div class="col-4">
+                            <label for="">EmailId</label>
+                            <input [(ngModel)]="newObj.emailId" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Department</label>
+                            <select [(ngModel)]="newObj.deptId"  class="form-select" >
+                                <option value="">Select Dept</option>
+                                @for (item of deptList; track $index) {
+                                <option [value]="item.deptId">{{item.deptName}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="">Role</label>
+                            <select [(ngModel)]="newObj.role"  class="form-select" >
+                                <option value="">Select Role</option>
+                                @for (item of roleList; track $index) {
+                                <option >{{item}}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                        <div class="col-4">
+                            <label for="">Gender</label>
+                            <input [(ngModel)]="newObj.gender" value="Male" name="gender" type="radio"   /> Male
+                            <input [(ngModel)]="newObj.gender" value="Fe-Male" name="gender" type="radio"  />Female
+                        </div>
+                        <div class="col-4">
+                            <label for="">Password</label>
+                            <input [(ngModel)]="newObj.password" type="text" class="form-control" />
+                        </div>
+    
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-6 text-center">
+                            <button class="btn btn-secondary">Reset</button>
+                        </div>
+                        <div class="col-6 text-center">
+                            @if(this.newObj.employeeId == 0) {
+                            <button class="btn btn-success" (click)="save()">Save Dept</button>
+                            } @else {
+                            <button class="btn btn-warning" (click)="update()">Update Category</button>
+                            }
+    
+                        </div>
+                    </div>
+                </div>
+            </div> 
+    }
+   
+    
+</div>

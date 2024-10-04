@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="btn-group">
+            <button type="button" (click)="changeMode('My Tickets')" [class]="mode == 'My Tickets' ? 'btn btn-success':'btn btn-primary'">My Ticket</button>
+            <button type="button" (click)="changeMode('Assigned Tickets')" [class]="mode == 'Assigned Tickets' ? 'btn btn-success':'btn btn-primary'">Assigned Ticket</button> 
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if (mode == 'My Tickets') {
+            <table class="table table-bordered" >
+                <thead>
+                    <tr> 
+                        <th>Ticket No</th>
+                        <th>Department</th>
+                        <th>Created By </th>
+                        <th>Contact No </th>
+                        <th>Created Date </th>
+                        <th>State </th>
+                        <th>Assigned To </th>
+                        <th>Category</th>
+                        <th>Sub Category </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of ticketList; track $index) {
+                        <tr>
+                            <td>{{item.ticketNo}}</td>
+                            <td>{{item.deptName}}</td>
+                            <td>{{item.createdByEmployee}}</td>
+                            <td>{{item.contactNo}}</td>
+                            <td>{{item.createdDate}}</td>
+                            <td>{{item.state}}</td>
+                            <td>{{item.assignedToEmployee}}</td>
+                            <td>{{item.parentCategory}}</td>
+                            <td>{{item.childCategory}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } @else {
+            <table class="table table-bordered" >
+                <thead>
+                    <tr> 
+                        <th>Ticket No</th>
+                        <th>Department</th>
+                        <th>Created By </th>
+                        <th>Contact No </th>
+                        <th>Created Date </th>
+                        <th>State </th>
+                        <th>Assigned To </th>
+                        <th>Category</th>
+                        <th>Sub Category </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of ticketList; track $index) {
+                        <tr>
+                            <td>{{item.ticketNo}}</td>
+                            <td>{{item.deptName}}</td>
+                            <td>{{item.employeeName}}</td>
+                            <td>{{item.contactNo}}</td>
+                            <td>{{item.createdDate}}</td>
+                            <td>{{item.state}}</td>
+                            <td>{{item.assignedToEmployee}}</td>
+                            <td>{{item.parentCategoryName}}</td>
+                            <td>{{item.childCategroyName}}</td>
+                            <td>
+                                @if (item.state == "Assigned") {
+                                    <button  class="btn btn-success" (click)="changeStatus('Start', item.ticketId)" >Start </button>
+                                }@else if (item.state == "In-Progress") {
+                                    <button  class="btn btn-success" (click)="changeStatus('Close',item.ticketId)">Close </button>
+                                }
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+       
+    </div>
+</div>
